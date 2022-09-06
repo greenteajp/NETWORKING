@@ -47,9 +47,22 @@ Data Link Layer (OSI 1):
     -VLAN
  SCAPY TOOL:
   -sudo scapy, manipulate frame/network data
-    a=Ether()
+    a=Ether()   ###basic ethernet header
     a.show()
-    a.type=0x0806
+    a.type=any header type
+    
+    b.Dot1Q()   ### specifically for VLANS
+    b.show()
+    b.vlan=#    ### name
+    
+    c=IP()      ### IP packet
+    
+    d=ICMP()      ### icmp packet
+      
+    sendp(a/b/c/d, iface="eth0")     ### sends packet
+      
+      
+      
       
       
       
