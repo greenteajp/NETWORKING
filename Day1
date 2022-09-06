@@ -69,10 +69,7 @@ Network Layer (OSI 3):
   -netstat -ntlp, only listening ports
  
       
-      
-      
-      
-      
+     
 Transport Layer (OSI 4):
   -
 
