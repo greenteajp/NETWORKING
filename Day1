@@ -63,9 +63,6 @@ Data Link Layer (OSI 1):
       
       
       
-      
-      
-      
 Network Layer (OSI 3):
   -IPv4/6 Headers
   -Fingerprinting with TTLs/TCP window size
