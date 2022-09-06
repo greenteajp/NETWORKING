@@ -6,4 +6,72 @@ https://miro.com/app/board/o9J_klSqCSY=/
 Activity CTFd:
 http://10.50.20.75:8000/login     JODO-006-M
 Practice CTDFd:
-http://10.50.22.14:8000/
+http://10.50.22.14:8000/            SAME^
+
+ssh student@10.50.21.119 -X   (password)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NETWORK FUNDAMENTALS:
+https://net.cybbh.io/-/public/-/jobs/699293/artifacts/modules/networking/slides/1-Network_Fundamentals.html
+https://learningnetwork.cisco.com/s/question/0D53i00000KswgJCAR/magic-number-subnetting-introduction    ### vlsm cheat sheet
+
+4 = nibble
+8 = bytes
+16 = half word
+32 = word
+64 = very long word
+
+Standards:
+https://www.ietf.org/standards/
+IANA, assigns DNS, IPs, internet protocols
+
+
+Physical Layer (OSI 1):
+  -Hardware Specifications
+  -Encoding and Signaling
+  -Data Transmission and Reception
+  -Physical Network Design
+  
+Data Link Layer (OSI 1):
+  -MAC
+  -LLC(Logical Link Control)
+  -Ethernet Header
+    -0x0800 ipv4
+    -0806 ARP
+    -86DD ipv6
+    -8100 vlan tag
+  -Arp Header
+    -mac address resolution
+    -man in the middle attack
+  -ICMP HEaders
+  -802.1Q Header
+    -VLAN
+ SCAPY TOOL:
+  -sudo scapy, manipulate frame/network data
+    a=Ether()
+    a.show()
+    a.type=0x0806
+      
+      
+      
+Network Layer (OSI 3):
+  -IPv4/6 Headers
+  -Fingerprinting with TTLs/TCP window size
+  -netstat -ntlp, only listening ports
+ 
+      
+      
+      
+      
+      
+Transport Layer (OSI 4):
+  -
+
+
+
+
+
+
+
+
+
+
