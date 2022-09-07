@@ -31,3 +31,28 @@ Networking 1 - Task 2: ICMPv6 MitM , IPv6
   send (a/b/c/d/e, iface="eth0")
     
     
+Basic Analysis -
+(ttl)sudo tcpdump 'ip[8]<=64||ip6[7]<=64' -r BPFCheck.pcap | wc -l
+(dont frag)sudo tcpdump 'ip[6]&64=64' -r BPFCheck.pcap | wc -l
+(high port)sudo tcpdump 'tcp[0:2]>1024||udp[0:2]>1024' -r BPFCheck.pcap | wc -l
+(udp)sudo tcpdump 'ip[9]=17||ip6[6]=17' -r BPFCheck.pcap | wc -l
+(tcp flags)sudo tcpdump 'tcp[13]=20||tcp[13]=17' -r BPFCheck.pcap | wc -l
+(id)sudo tcpdump 'ip[4:2]=213' -r BPFCheck.pcap | wc -l
+(vlan)sudo tcpdump 'ether[12:2]=0x8100' -r BPFCheck.pcap | wc -l
+(dns)sudo tcpdump 'tcp[0:2]=53||tcp[2:2]=53||udp[0:2]=53||udp[2:2]=53' -r BPFCheck.pcap | wc -l
+(dscp)sudo tcpdump 'ip[1]>>2=24' -r BPFCheck.pcap | wc -l
+(traceroute)sudo tcpdump '(ip[9]=1||ip[9]=17)&&ip[8]=1' -r BPFCheck.pcap | wc -l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
