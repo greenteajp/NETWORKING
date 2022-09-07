@@ -105,6 +105,34 @@ Network Layer (OSI 3):
     IPv4; APIPA, RFC 3927 (192.168.0.0/16)
     IPv6; SLAAC, RFC4862  
       
+Routing Tech:
+  Default route - 0.0.0.0/0
+  Lookup process via longest match
+    i.e- ipdst = 172.16.0.10 -> 172.16.0.0/26 = 10101100.00010000.00000000.00,000000
+  Admin Distance
+    connected 0
+    Static 1
+    EIGRP sum route 5
+    Ext BGP 20
+    Int EIGRP 90
+    IGRP 100
+    OSPF 110
+    IS-IS 115
+    RIP 120
+    Ext EIGRP 170
+    Int BGP 200
+ Static route priority over dynamic     
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
 Transport Layer (OSI 4):
   -0-1024, well known ports
   -TCP
