@@ -193,12 +193,22 @@ Capture Library:
   USER SIDE- WIRESHARK,TCPDUMP,BPFS
     
 
-  
-  
-  
-  
-  
-  
+  TCPDUMP:
+    sudo tcpdump -D; shows interfaces on box
+                 -i "iface name"
+                 -X, shows hex dump
+                 -XX, also shows ethernet header
+                 -vv(v), very verbose
+                 -w "name.pcap" to save output
+                 -no options for just port and ips
+                 -port #, specifies only for that port
+              Operators:
+                 - |, &&, !, <, >, <=, ==, !=, ...
+              -'portrange 20-100'   
+ex:
+  sudo tcpdumnp -i eth0 -XXvv -w dump.pcap
+  sudo tcpdump port 80 or 22; (80 | 22)
+  sudo tcpdump "(src net 10.1.0.0/24 && (dst net 10.1.0.0/24) && (! dst host 10.1.0.3)"
   
   
   
