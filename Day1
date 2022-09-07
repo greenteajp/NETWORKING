@@ -31,7 +31,7 @@ Physical Layer (OSI 1):
   -Data Transmission and Reception
   -Physical Network Design
   
-Data Link Layer (OSI 1):
+Data Link Layer (OSI 2):
   -MAC
   -LLC(Logical Link Control)
   -Ethernet Header
@@ -42,7 +42,6 @@ Data Link Layer (OSI 1):
   -Arp Header
     -mac address resolution
     -man in the middle attack
-  -ICMP HEaders
   -802.1Q Header
     -VLAN
  SCAPY TOOL:
@@ -66,8 +65,23 @@ Data Link Layer (OSI 1):
 Network Layer (OSI 3):
   -IPv4/6 Headers
   -Fingerprinting with TTLs/TCP window size
+    Linux 64 TTL; 5840 TCP window size
+    Google's custom Linux 64; 5720
+    FreeBSD 64; 65535
+    Windows XP 128; 65535
+    Win7, Vista, Server 2k8 128; 8192
+    Cisco (IOS 12.4) 255; 4128
   -netstat -ntlp, only listening ports
- 
+  -ICMPv4/6 Headers; adminsistrative protocol, mgmt, troubleshoooting (i.e ttl exceeded need more frags). 
+    Error Reporting, flow control, first-hop gateway direction. Echo request/reply ( ping,traceroute)
+  -Fragmentation, 1500byte segments. "MF" flag of 1 is more fragments, minus the last packet.
+   Offset number orders the frags
+  -Zero Configuration
+    IPv4; APIPA, RFC 3927 (192.168.0.0/16)
+    IPv6; SLAAC, RFC4862  
+      
+      
+      
       
      
 Transport Layer (OSI 4):
