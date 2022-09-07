@@ -17,7 +17,6 @@ sendp ( a/b, iface="eth0")
     ### or: sudo tcpdump -vv icmp -X
     
     
-    
 Networking 1 - Task 2: ICMPv6 MitM , IPv6
   a=IPv6()
     a.dst="ff02::1" ### all nodes or ::1
