@@ -60,8 +60,6 @@ Data Link Layer (OSI 2):
       
     sendp(a/b/c/d, iface="eth0")     ### sends packet
       
-      
-      
 Network Layer (OSI 3):
   -IPv4/6 Headers
   -Fingerprinting with TTLs/TCP window size
@@ -75,22 +73,145 @@ Network Layer (OSI 3):
   -ICMPv4/6 Headers; adminsistrative protocol, mgmt, troubleshoooting (i.e ttl exceeded need more frags). 
     Error Reporting, flow control, first-hop gateway direction. Echo request/reply ( ping,traceroute)
   -Fragmentation, 1500byte segments. "MF" flag of 1 is more fragments, minus the last packet.
-   Offset number orders the frags
+    Offset number orders the frags
+    MTU 1500:
+    1500-(5 x 4) = 1480
+    1480/8= 185 offset
+    Offset=0,185,370,555,740.
   -Zero Configuration
     IPv4; APIPA, RFC 3927 (192.168.0.0/16)
     IPv6; SLAAC, RFC4862  
       
-      
-      
-      
-     
 Transport Layer (OSI 4):
-  -
+  -0-1024, well known ports
+  -TCP
+    TCP Flags, RST,FIN,SYN,ACK,URG
+    3-way handshake (SYN, SYN+ACK, ACK)
+    PSH+ACK, needs more (Data transfer)
+    FIN+ACK, ACK, FIN+ACK, ACK ends (4-way termination)
+  -UDP
+    No handshake, just sends data and forgets
+    
+Session Layer (OSI 5):
+  -Protocols: 
+  Socks 4/5 (TCP 1080)
+    connections through proxy
+    various client server exchange msgs
+    client provide auth to server
+    client req conn to server
+  PPTP (TCP 1723)
+    Obsolete method for VPn tunnels, known vulnerab
+  L2TP (TCP 1701)
+    Does not provide encryption itself, relie son other encryp
+  SMB/CIFs(TCP139/445 and UDP 137/138)
+    SMB rides over NetBIOS
+      NetB Dgram -UDP 138
+      NetB Session -TCP 139
+      SAMBA/CIFs, versions of SMB
+  RPC (ANY PORT)
+    Basic request/response protocol
+    JSON,XML,NFS,SOAP uses this
+    
+Presentation Layer (OSI 6):
+  Translation, Formating(mp3,wav,jpeg,etc), Ecndoing(SCII,EBCDIC,HEX,BASE64)
+  Encryption(Symmetric/Asymmetric) 
 
+Application Layer (OSI 7):
+ -FTP (TCP 20 Data/21 Control)
+    Active/Passive
+    Note reliable or secure
+    Anonymous access
+    Active
+      Server/Client(high port and + 1) req
+      NAT & firewall issues
+      Complications with tunneling through SSH
+      Passive solves issues w/ Active, better used in modern sys
+ -SSH (TCP 22)
+  Messaging provides
+      Clien/server auth
+      Asymm or PKI key exchange
+      Symm for session
+      User auth
+      Data stream channeling
+  Archit 1:
+    Server
+    Client
+    Session
+    Keys
+      User Key -Asymm public key, user to server
+      Host Key -Asymm public key, server to user
+      Session Key -Symm key created by client and server to protect sess comms
+      Key Gen
+  Archit 2:
+    Known-Host database - collection of host keys, used by client/server for mutual auth
+    Agent-Store keys as a convenience for users
+    Signer-signs the host-based auth packets
+    Random Seed-used for entropy in creating pseudo-rand #s
+    Config File-settings tht exist on client/server to dictate config of ssh/sshd
+  SSH Concerns:
+    Using passwd auth only
+    Key rotation
+    Key mgmt
+    Implementation specification
+ -Telnet (TCP 23):
+ -SMTP (TCP 25):
+ -TACACS (TCP 49)  Simple/Ext:
+  Controls logins
+ -HTTP(S) (TCP 80/443):
+  Methods:
+    GET/HEAD/POST/PUT
+  HTTP status Codes:
+    100,200,300,400
+ -POP(TCP 110):
+ -IMAP(TCP 143):
+ -RDP (TCP 3389):
+    Compression or Encryption support
+    Desktop size and color depth
+    Keyboard Mapping
+    Remote system control
+    Mouse-cursor color prop
+ -DNS (Query/Response) (TCP/UDP 53):
+    A,AAAA,CNAME,PTR,NS,MX,SOA,TXT
+ -DHCP (UDP 67/68):
+    Auto assign IPs
+ -TFTP (UDP 69):
+ -NTP (UDP 123):
+ -SNMP (UDP 161 agent/162 manager):
+    MGMT
+    Set/Get req
+    Get next/bulk
+    response
+    trap
+    inform
+ -RADIUS (UDP 1645/1646 AND 1812/183)
+ -RTP (1024+):
+    delivers audio.video
+    streaming
+  
+Capture Library: 
+  Libcap,WindPcap,NPCAP
+  USER SIDE- WIRESHARK,TCPDUMP,BPFS
+    
 
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
