@@ -60,6 +60,29 @@ Data Link Layer (OSI 2):
       
     sendp(a/b/c/d, iface="eth0")     ### sends packet
       
+ Switching Tech:
+ -fast forward, only dst MAC
+ -frag free
+    -IEEE 802.1AD "Q-in-Q"
+    -double tagging
+        0x88A8 - stnd double tag
+        0x9100 - non-stnd double tag
+ -STP
+    ties multi dev together
+    elect root bridge
+      multi routes, can get into a loop if no root bridge
+    disables alt routes
+    determines routes via: 
+        CDP (Cisco)
+        FDP (Foundry)
+        LLDP (Link Layer)
+ -DTP
+ -VTP 
+      
+      
+      
+      
+      
 Network Layer (OSI 3):
   -IPv4/6 Headers
   -Fingerprinting with TTLs/TCP window size
@@ -85,7 +108,7 @@ Network Layer (OSI 3):
 Transport Layer (OSI 4):
   -0-1024, well known ports
   -TCP
-    TCP Flags, RST,FIN,SYN,ACK,URG
+    TCP Flags in order: CWR, ECE,URG, ACK, PSH, RSt, SYN, FIN
     3-way handshake (SYN, SYN+ACK, ACK)
     PSH+ACK, needs more (Data transfer)
     FIN+ACK, ACK, FIN+ACK, ACK ends (4-way termination)
@@ -192,8 +215,7 @@ Capture Library:
   Libcap,WindPcap,NPCAP
   USER SIDE- WIRESHARK,TCPDUMP,BPFS
     
-
-  TCPDUMP:
+TCPDUMP:
     sudo tcpdump -D; shows interfaces on box
                  -i "iface name"
                  -X, shows hex dump
@@ -210,18 +232,43 @@ ex:
   sudo tcpdump port 80 or 22; (80 | 22)
   sudo tcpdump "(src net 10.1.0.0/24 && (dst net 10.1.0.0/24) && (! dst host 10.1.0.3)"
   
+BERKELEY PACKET FILTERS (BPF):
+  req a SOCK_RAW socket and setsockopt calls SO_ATTACH_FILTER
+tcpdump {A} [B:C] {D} {E} {F} {G}
+  A = Protocol (ether | arp | ip | ip6 | icmp | tcp | udp)
+  B = Header Byte offset
+  C = optional: Byte Length. Can be 1, 2 or 4 (default 1)
+  D = optional: Bitwise mask (&)
+  E = Operator (= | == | > | < | <= | >= | != | () | << | >>)
+  F = Result of Expresion
+  G = optional: Logical Operator (&& ||) to bridge expressions
+  Ex1:
+    tcpdump 'ether[12:2] = 0x0800 && (tcp[2:2] != 22 && tcp[2:2] != 23)'
+                ^byte 12 then next two
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  Atleast one of the designated bits must be set to equal 0, like or statement
+    tcp[13] & 0x11 !=0
+  Have to match, others can be set
+    tcp[13] & 0x11 = 0x11
+  HAVE to match, will not look for others
+    tcp[13] = 0x11
+    --or--
+    tcp[13] & 0xFF = 0x11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
