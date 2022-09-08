@@ -9,6 +9,16 @@ Practice CTDFd:
 http://10.50.22.14:8000/            SAME^
 
 ssh student@10.50.21.119 -X   (password)
+
+
+.vimrc
+  1 syntax enable
+  2 set tabstop=4
+  3 set shiftwidth=4
+  4 set expandtab
+  5 set number
+  6 filetype indent on
+  7 set autoindent                                                                                                                
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 NETWORK FUNDAMENTALS:
 https://net.cybbh.io/-/public/-/jobs/699293/artifacts/modules/networking/slides/1-Network_Fundamentals.html
@@ -277,17 +287,73 @@ tcpdump {A} [B:C] {D} {E} {F} {G}
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PACKET CREATION AND SOCKET PROGRAMMING:
 
+Socket Types:
+ -User Space Sockets:
+    most common sockets that do not req elevated priv to perform actions on behalf of user apps.  
+    using tcpdump, or wireshark to read a file
+    using nmap w/ no switches
+    using netcat to conn to a listener
+    using netcat to create a listener w/ 1024+
+    using /dev/tcp or /dev/udp to transmit data
+   Stream Sockets:
+    conn oriented and sequenced; methods for conn est. and tear-down. Used with TCP,SCTP,Bluetooth
+   Datagram Sockets:
+    connless; designed for quickly sending and rec. data. Used with UDP
+    
+ -Kernel Space Sockets:
+    attempts to access hardware directly on behalf of a user app to either prevent encap/decap or to create packets from scratch, req elev priv
+    using wireshark/tcpdump to capture packets
+    using nmap for OS ident or set specific flags when scanning
+    using netcat to create a list in 0-1023 ports
+    using Scapy to craft/modify a packet for transm
+    using Python to craft/mod Raw Sockets for transm
+    Network devices sung routing protocols, i.e OSPF
+   Raw Sockets:
+    direct sending and rec. of IP packets w/out auto proto-specific formatting
+    all headers typically included in packet and not removed
+    used in nmap, tcpdump, wireshark
+      
+Python:
+
+  Python Libs:
+   Libs - contains own modules
+    Modules - file consisting of python code: struct, socket, sys
+      functions - block of organiz code: struct.pack, socket.socket, "user-defined"
+      exceptions - attempting to execute w/out proper perm, ctrl + c, attempt access file not existing
+      constants - value not change in a spec time: AF_INET/6, SOCK_STREAM, etc.
+      objects - socket.bind(addr), socket.connect(addr), socket.send(bytes[,flags]), socket.close()
+      types -Arrays: List, Tuple, Set, Dict; Data Types: int, float, complex, str, 
+      
+  Network sockets primarily use the Python3 Socket library and socket.socket function.
+  import socket
+  s = socket.socket(socket.FAMILY, socket.TYPE, socket.PROTOCOL)
+  inside socket.socket.functions you have these arguments in order:
+    socket.socket([*family*[,*type*[*proto*]]])
+    family constants should be: AF_INET (default), AF_INET6, AF_UNIX
+    type constants should be: SOCK_STREAM (default), SOCK_DGRAM, SOCK_RAW
+    proto constants should be: 0 (default), IPPROTO_RAW
+send() - TCP
+sendto() - UDP
+
+echo "I got your message" | nc -lp 54321
+run stream.py
 
 
 
 
-
-
-
-
-
-
-
+Raw IPv4 Sockets:
+  raw socket scripts must include IP header and next headers
+  use for testing specific def mech-such as triggering IDSs, filtering
+  avoiding def mech
+  obfusc data on transfer
+  manually craft packet w/ chosen data
+Encoding and Decoding:
+  encoding:
+    process of taking bits and conver using specif cipher
+  decoding:
+    reverse of conver process used by specif cipher for encod
+  common encodes:
+    UTF-8,BASE64,Hex
 
 
 
