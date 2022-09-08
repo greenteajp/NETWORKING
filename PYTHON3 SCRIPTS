@@ -1,0 +1,42 @@
+STREAM
+  1 #!/usr/bin/env python3
+  2 import socket
+  3 
+  4 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  5 # This can also be accomplished by using s = socket.socket(), because Af_INET, and SOCK_STREAM are defaults.
+  6 
+  7 ipaddr ='127.0.0.1'
+  8 port =54321
+  9 
+ 10 s.connect((ipaddr, port))
+ 11 
+ 12 #To send a string as a bytes-like object, add the prefix b to the string. \n is used to go to the next line
+ 13 s.send(b'Hello\n')
+ 14 
+ 15 #It is recommended that the buffersize used with recvfrom is a power of 2 and not a very large number of bits
+ 16 response, conn = s.recvfrom(1024)
+ 17 
+ 18 # In order to receive a message that is sent as bytes-like object, you must decode into utf-8 (default)
+ 19 print(response.decode())
+ 20 
+ 21 s.close()
+ 
+ DGRAM  
+  1 #!/usr/bin/env python3
+  2 
+  3 import socket
+  4 
+  5 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  6 
+  7 ipaddr = '127.0.0.1'
+  8 port= 54321
+  9 
+ 10 # To send a string as a byte-like object, add the prefix b to the string. \n is used to go to the next line
+ 11 s.sendto(b'Hello\n',(ipaddr,port))
+ 12 
+ 13 # It is recommended that the buffersize used with recvfrom is a power of 2 and not a very large number of bits
+ 14 response, conn = s.recvfrom(1024)
+ 15 
+ 16 # In order to receive a message that is sent as a bytes-like object you must decode into UTF-8 (default)
+ 17 print(response.decode())
+             
