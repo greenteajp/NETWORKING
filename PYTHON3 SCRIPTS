@@ -20,6 +20,7 @@ STREAM
   print(response.decode())
   
   s.close()
+  
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  DGRAM  
    #!/usr/bin/env python3
@@ -39,8 +40,53 @@ STREAM
   
   # In order to receive a message that is sent as a bytes-like object you must decode into UTF-8 (default)
   print(response.decode())
+  
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-RAWIPV4SOCKET
+RAWIPV4SOCK
+#!/usr/bin/env python3
+
+# For building the socket 
+import socket
+
+# For system level commands
+import sys
+
+# For establishing the packet structure. This will allow direct access to the methods and functions in the struct mode
+from struct import *
+
+# Create a raw socket
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
+except socket.error as msg:
+    print(msg)
+    sys.exit()
+
+packet = ''
+src_ip = "10.1.0.2"
+dst_ip = "10.3.0.2"
+
+# add the IPv4 header information
+ip_ver_ihl = 69  #this is putting the decimal conversion off 0x45 for the version and Internet Header length
+ip_tos = 0       #this combines the DSCP and ECN fields
+ip_len = 0       #the kernel will fill in the actual length of the packet
+ip_id = 12345    #this sets the IP identification for the packet
+ip_frag = 0      #this sets frag to off
+ip_ttl = 64      #this determines the TTL of the packet when leaving the machine
+ip_proto = 16    #this sets up the IP proto to 16 (CHAOS). If this was 6 (TCP) or 17 (UDP) additional headers would be required
+ip_check = 0     #the kernel will fill in the checksum for the packet
+ip_srcadd = socket.inet_aton(src_ip)    # inet_aton(srting) will convert and IP address to a 32 bit binary number
+ip_dstadd = socket.inet_aton(dst_ip)    # inet_aton(srting) will convert and IP address to a 32 bit binary number
+
+ip_header = pack('!BBHHHBBH4s4s' , ip_ver_ihl, ip_tos, ip_len, ip_id, ip_frag, ip_ttl, ip_proto, ip_check, ip_srcadd, ip_dstadd)
+
+message = b'This is a message'
+packet = ip_header + message  
+
+# Send the packet
+s.sendto(packet, (dst_ip, 0))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RAWTCPIPV4SOCKET
 #!/usr/bin/env python3
 
 # For building the socket 
