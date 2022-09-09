@@ -79,6 +79,10 @@ ip_dstadd = socket.inet_aton(dst_ip)    # inet_aton(srting) will convert and IP 
 
 ip_header = pack('!BBHHHBBH4s4s' , ip_ver_ihl, ip_tos, ip_len, ip_id, ip_frag, ip_ttl, ip_proto, ip_check, ip_srcadd, ip_dstadd)
 
+
+user_data = b'DoughertyDelapaz'
+hidden_msg = binascii.hexlify(user_data)
+
 message = b'This is a message'
 packet = ip_header + message  
 
