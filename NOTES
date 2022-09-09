@@ -300,6 +300,7 @@ Socket Types:
    Datagram Sockets:
     connless; designed for quickly sending and rec. data. Used with UDP
     
+    
  -Kernel Space Sockets:
     attempts to access hardware directly on behalf of a user app to either prevent encap/decap or to create packets from scratch, req elev priv
     using wireshark/tcpdump to capture packets
@@ -313,8 +314,8 @@ Socket Types:
     all headers typically included in packet and not removed
     used in nmap, tcpdump, wireshark
       
+      
 Python:
-
   Python Libs:
    Libs - contains own modules
     Modules - file consisting of python code: struct, socket, sys
@@ -339,15 +340,12 @@ echo "I got your message" | nc -lp 54321
 run stream.py
 
 
-
-
-
 Raw IPv4 Sockets:
   raw socket scripts must include IP header and next headers
   use for testing specific def mech-such as triggering IDSs, filtering
   avoiding def mech
   obfusc data on transfer
-  manually craft packet w/ chosen data
+  manually craft packet w/ chosen data in header fields, not automatic
 Encoding and Decoding:
   encoding:
     process of taking bits and conver using specif cipher
