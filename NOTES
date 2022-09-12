@@ -404,10 +404,12 @@ Types:
       supplements base queries
     Host history:
       netcraft
-      wayback machine
+      wayback machine (webiste for internet archives)
     Google searches:
       subdomains
       tech
+      *ccboe.net -site:*ccboe.net
+      Explouit database for "google hacking database"
     Shodan:
       reveals info abt tech, remote access services, improperly config services, and net infrast
       when selected can give additional info and applicable vuln
@@ -416,9 +418,41 @@ Types:
  
  External
 
-
-
-
+Network Scanning:
+  Scanning Strat:
+    remote to local
+     local to remote
+     local to local
+     remote to remote
+  Scanning Approach:
+    Aim
+      wide range tgt scan
+      tgt specific scan
+    Method
+      single source scan
+      distributed scan
+  SCANS:
+      broadcast ping/ping sweep
+      arp sacn
+      syn scan
+       full connect scan
+       null scan
+       fin scan
+       xmas scan
+       udp scan
+       idle scan
+       ack/windows scan
+       rpc scan
+       ftp scan
+       decoy scan
+       Os fingerp scan
+       version scan
+       protocol ping
+       discovery probes
+       SCTP init scan
+  ex:
+    nmap [Options] [Target IP/Subnet]
+    nc [Options] [Target IP [Target Port]
 
 
 
