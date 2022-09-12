@@ -359,20 +359,21 @@ Network Reconnasissance:
 https://net.cybbh.io/-/public/-/jobs/699293/artifacts/modules/networking/slides/3-Network_Reconnaissance.html
 Types:
   https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/Recon2.png
- Active
+  
+ ACTIVE
   Internal:
     DNS Queries
     ARP requests
   External:
     Network Scanning
- Passive 
+    
+ PASSIVE
   Interal:
     Packet Sniffer
   External:
     DNs lookups
     Whois
     Job Site Listings
-   
   Gethering info about tgts w/out direct interaction
   not as straight forward, req more time than active recon
   lower risk
@@ -414,6 +415,7 @@ Types:
       reveals info abt tech, remote access services, improperly config services, and net infrast
       when selected can give additional info and applicable vuln
       exploits defaults, AOTs
+      
  Internal
  
  External
