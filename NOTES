@@ -450,11 +450,11 @@ Network Scanning:
       -sU (UDP scan) used to find .nix hosts that are blocking TCP and ICMP, get thru stateful firewals, not usefull for service discovery
       -sI (Idle scan) SYN/ACK half-open scan. more complez stealth techniq
       -sW (Windows scan) functions like ACK uses window size of repsonse to see if port open/closed/filtered. non zero = open, 0 = closed, no repsonse/icmp unreach = filtered
-      -sR (RPC scan) loks for services using RPC (updated to -sV)
+      -sR (RPC scan) looks for services using RPC (updated to -sV)
       -b (FTP bounce scan) uses intermediate ftp server to send files to 3rd prty to determine open ports, req anon login
-      -O Os fingerp
+      -O OS fingerp
       -sV (Version scan) 
-      -
+      -T5/1 bad, T4
     
     
     
@@ -465,6 +465,7 @@ Network Scanning:
       -z port scanning mode
       -v verbose
       nc -zv localhost 22
+      nc -nvzw1
 Net Mapping:
   https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/offensivefinishednetwork.png
 
