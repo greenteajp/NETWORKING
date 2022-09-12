@@ -350,9 +350,92 @@ Encoding and Decoding:
   encoding:
     process of taking bits and conver using specif cipher
   decoding:
-    reverse of conver process used by specif cipher for encod
+    reverse of conver process used by specif cipher for encode
   common encodes:
     UTF-8,BASE64,Hex
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Network Reconnasissance:
+https://net.cybbh.io/-/public/-/jobs/699293/artifacts/modules/networking/slides/3-Network_Reconnaissance.html
+Types:
+  https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/Recon2.png
+ Active
+  Internal:
+    DNS Queries
+    ARP requests
+  External:
+    Network Scanning
+ Passive 
+  Interal:
+    Packet Sniffer
+  External:
+    DNs lookups
+    Whois
+    Job Site Listings
+   
+  Gethering info about tgts w/out direct interaction
+  not as straight forward, req more time than active recon
+  lower risk
+  involves identifying:
+    IP addr and sub-domains
+    external and 3rd prty sites
+    people and tech
+    content of interest
+    vuln
+  Possible tools:
+    WHOIS queries
+    Job site listings
+    phone numbers
+    google searches
+    passive OS fingerp
+  External network recon: 
+    info gathered outeside of net using passive methods
+    allows for more efficient attacks and plans
+    DNS:
+      Resolves hostnames to IP addr
+      RFC 3912
+      WHOIS queries
+    Dig:
+      Typically btw primary and second DNs servers
+      If allowed to transfer externally hostnames, IPs, and IP blocks can be determined
+      dig axfr "dns transfer"
+    Zone Tranfers:
+      return dns info
+      supplements base queries
+    Host history:
+      netcraft
+      wayback machine
+    Google searches:
+      subdomains
+      tech
+    Shodan:
+      reveals info abt tech, remote access services, improperly config services, and net infrast
+      when selected can give additional info and applicable vuln
+      
+ Internal
+ 
+ External
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
