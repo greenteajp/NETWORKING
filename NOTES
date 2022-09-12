@@ -476,6 +476,9 @@ Network Scanning:
       
 Net Mapping:
   https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/offensivefinishednetwork.png
+wget 10.50.21.41:21   -banner grab ftp server
+  -R  ### recursivley grabs everything off server,
+
 
 
 
