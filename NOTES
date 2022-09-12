@@ -10,6 +10,7 @@ http://10.50.22.14:8000/            SAME^
 
 ssh student@10.50.21.119 -X   (password)
 
+curl cht.sh/nc
 
 .vimrc
   1 syntax enable
@@ -417,33 +418,52 @@ Types:
       exploits defaults, AOTs
       
  Internal
- 
  External
 
 Network Scanning:
   Scanning Strat:
-    remote to local
+     remote to local
      local to remote
      local to local
      remote to remote
   Scanning Approach:
     Aim
-      wide range tgt scan
+      wide range tgt scan   # just to find stuff
       tgt specific scan
     Method
       single source scan
-      distributed scan
+      distributed scan  # mult scans/mult pc
   SCANS:
-       broadcast ping/ping sweep; arp scan; syn scan; full connect scan; null scan; fin scan; xmas scan; udp scan; idle scan; ack/windows scan
+       broadcast ping/ping sweep, sends to everything, easiest, not always reliable, secured often for only internal pings (CLI ninja ping sweep, rubyguides)
+       arp scan, dont are about ping/dns/etc, only a physicall connected device will have a arp cache; 
+       syn scan (only syn probe); full connect scan (if tcp connection can be established); null scan (tcp conn with no flags); fin scan (no convo); (TCP scans)
+       xmas scan(syn/fin/ack or every flag checked) 
+       udp scan (usually non responding, need something i.e a nc); idle scan; ack/windows scan
        rpc scan; ftp scan; decoy scan; OS fingerp scan; version scan; protocol ping; discovery probes; SCTP init scan
   ex:
-    nmap [Options] [Target IP/Subnet]
-    nc [Options] [Target IP [Target Port]
-
+    nmap [Options] [Target IP/Subnet]     https://nmap.org/book/man-port-scanning-techniques.html
+      -sS,(SYN scan) only sends one TCP packet with SYN flag, checks for open ports does not send ACK
+      -sT, (Full Conn scan) establish 3-way tcp, banner grabbing
+      -sN (Null scan) no flags set, seq # = 0.Open/filtered ports have no response, closed ports send RST
+      -sF (Fin scan) FIN flag only, (like Null scan but stealthier)
+      -sX (xmas tree) like above, different flags
+      -sU (UDP scan) used to find .nix hosts that are blocking TCP and ICMP, get thru stateful firewals, not usefull for service discovery
+      -sI (Idle scan) SYN/ACK half-open scan. more complez stealth techniq
+      -sW (Windows scan) functions like ACK uses window size of repsonse to see if port open/closed/filtered. non zero = open, 0 = closed, no repsonse/icmp unreach = filtered
+      -sR (RPC scan) loks for services using RPC (updated to -sV)
+      -b (FTP bounce scan) uses intermediate ftp server to send files to 3rd prty to determine open ports, req anon login
+      -O Os fingerp
+      -sV (Version scan) 
+    
+    
+    nc [Options] [Target IP] [Target Port]
+      -l listens/opens a port
+      nc <ip>< <port> reaches out to that port on that IP
+      -z port scanning mode
+      -v verbose
+      nc -zv localhost 22
 Net Mapping:
   https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/offensivefinishednetwork.png
-
-
 
 
 
