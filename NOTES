@@ -455,8 +455,13 @@ Network Scanning:
       -O OS fingerp
       -sV (Version scan) 
       -T5/1 bad, T4
-    
-    
+    sudo nmap -PO -sV <IP>
+    namp 10.10.0.40/27 -v (scans for IPs and 1000 ports)
+                          -Pn (no ping sweep)
+                             -T5  (loud, sevefral scans)
+                                -p 22-2,80 (-p- every port)
+    nmap 10.10.0.40/27 -v -Pn -T5 -p 22-25,80
+    nmap
     
     
     nc [Options] [Target IP] [Target Port]
@@ -466,6 +471,9 @@ Network Scanning:
       -v verbose
       nc -zv localhost 22
       nc -nvzw1
+      
+      netstat -ntlp ( listening ports)
+      
 Net Mapping:
   https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/offensivefinishednetwork.png
 
