@@ -454,6 +454,9 @@ Network Scanning:
       -b (FTP bounce scan) uses intermediate ftp server to send files to 3rd prty to determine open ports, req anon login
       -O Os fingerp
       -sV (Version scan) 
+      -
+    
+    
     
     
     nc [Options] [Target IP] [Target Port]
