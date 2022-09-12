@@ -413,7 +413,7 @@ Types:
     Shodan:
       reveals info abt tech, remote access services, improperly config services, and net infrast
       when selected can give additional info and applicable vuln
-      
+      exploits defaults, AOTs
  Internal
  
  External
@@ -432,29 +432,14 @@ Network Scanning:
       single source scan
       distributed scan
   SCANS:
-      broadcast ping/ping sweep
-      arp sacn
-      syn scan
-       full connect scan
-       null scan
-       fin scan
-       xmas scan
-       udp scan
-       idle scan
-       ack/windows scan
-       rpc scan
-       ftp scan
-       decoy scan
-       Os fingerp scan
-       version scan
-       protocol ping
-       discovery probes
-       SCTP init scan
+       broadcast ping/ping sweep; arp scan; syn scan; full connect scan; null scan; fin scan; xmas scan; udp scan; idle scan; ack/windows scan
+       rpc scan; ftp scan; decoy scan; OS fingerp scan; version scan; protocol ping; discovery probes; SCTP init scan
   ex:
     nmap [Options] [Target IP/Subnet]
     nc [Options] [Target IP [Target Port]
 
-
+Net Mapping:
+  https://git.cybbh.space/net/public/raw/master/modules/networking/slides/images/offensivefinishednetwork.png
 
 
 
