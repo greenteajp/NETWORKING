@@ -557,11 +557,21 @@ DATA TRANSFER, MOVEMENT, AND REDIRECTION:
       
       CTFD:
       Relay Machine:
+###Accept connection
+dmz:
 nc -lp 1234 > mypipe | nc -lp 4444 < mypipe
-nc 172.16.82.115 9876 > mypipe | nc -lp 4444 < mypipe
-nc 172.16.82.115 6789 > mypipe | nc -lp 4444 < mypipe
-nc 172.16.82.115 9876 > mypipe | nc -lp 4444 < mypipe
-      Internet Host:
-nc 172.16.40.10 4444 > 4steg.jpg
+nc -lp 4321 > mypipe | nc -lp 4444 < mypipe
+internet host:
+nc 172.16.40.10 4444 > 1steg.jpg
+nc 172.16.40.10 4444 > 2steg.jpg
+##Waiting for connections/make connection
+dmz:
+nc 172.16.82.115 6789 > mypipe | nc >internet host> 4444 < mypipe
+nc 172.16.82.115 9876 > mypipe | nc <internet host> 4444 < mypipe
+internet host:
+nc -lp4444 > 4steg.jpg
+nc -lp 4444 > 3steg.jpg
+
+  
 
 
