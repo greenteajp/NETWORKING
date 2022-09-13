@@ -571,7 +571,7 @@ internet host:
 nc -lp4444 > 4steg.jpg
 nc -lp 4444 > 3steg.jpg
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-****SSH (TUNNELING):
+*****SSH (TUNNELING):
   SSH (OPEN SSH):
     various implem (v1/v2)
     provides auth, encryp, & integry
@@ -583,7 +583,7 @@ nc -lp 4444 > 3steg.jpg
       rcp - replaced with scp for secure file transfer
     sftp (not a unix r command replacement) -creates remote dir listing and file trans capab over ssh
     
-   SSH port forwarding:
+   ******SSH port forwarding:
     creates channels using SSH-CONN proto
     allows for tunneling of other services thru SSH
     provides insecure serv encryp 
@@ -600,11 +600,7 @@ nc -lp 4444 > 3steg.jpg
           ssh student@172.16.1.15 -L 1111:172.16.40.10:22 -NT
           ssh student@localhost -p 1111 -L 2222:172.16.82.106:80 -NT    ### localhost is internet host; student here auth to .10
           firefox localhost:2222
-          
-Class ex:
-  ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT
-  ssh localhost -p 1111
-  ssh localhost -p 1111 -D 9050 (dynamic)
+
 
  *****SSH dynamic port forwarding:
     syntax:
@@ -631,7 +627,8 @@ Class ex:
       proxychains ./scan.sh
       proxychains ssh student@172.16.101.2
     
-    SSH Remote port forwarding
+    
+    *****SSH Remote port forwarding
       syntax:
         ssh -p <optional alt port> <user>@<remote ip> -R <remote bind port>:<tgt ip>:<tgt port> -NT     -OR-
         ssh -R <remote bind port>:<tgt ip>:<tgt port> -p <alt port> <user>@<remote ip> -NT
@@ -659,16 +656,17 @@ Class ex:
   ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (blue host/ blue priv)
   ssh localhost -p 1111 (regular ssh connection)
   #ssh localhost -p 1111 -D 9050 (dynamic) to get scripts/etc on box
-        proxychains 
-                  nmap -Pn 127.0.0.1 (cant ping across proxy) (priv host)
+        proxychains nmap -Pn 127.0.0.1 (cant ping across proxy) (priv host)
         proxychains wget -r localhost   (http stuff)
         proxychains nc localhost 9001   (netcat to banner grab)
 
 
-
-
-
-
+*****Remote:
+ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (tunnel)
+ssh localhost -p 1111 (connect to blue priv from internet host)             ^
+ssh 192.168.1.1 -R 6789:localhost:22 -NT (open 22 on blue host 1 from blue priv)
+ssh 172.16.82.106 -L 9999:localhost:6789 -NT   (connect to from internet host)
+ssh localhost -p 9999   (final connection from interhet host)
 
 
 
