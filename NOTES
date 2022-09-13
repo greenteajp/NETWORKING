@@ -555,9 +555,13 @@ DATA TRANSFER, MOVEMENT, AND REDIRECTION:
         nc -l -p 1111 > file.txt
         cat file.txt > /dev/tcp/<IP>/<port>
       
-      Reverse Shell using netcat:
-        
-
-
+      CTFD:
+      Relay Machine:
+nc -lp 1234 > mypipe | nc -lp 4444 < mypipe
+nc 172.16.82.115 9876 > mypipe | nc -lp 4444 < mypipe
+nc 172.16.82.115 6789 > mypipe | nc -lp 4444 < mypipe
+nc 172.16.82.115 9876 > mypipe | nc -lp 4444 < mypipe
+      Internet Host:
+nc 172.16.40.10 4444 > 4steg.jpg
 
 
