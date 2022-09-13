@@ -65,8 +65,25 @@ nc -lp 4444 > 3steg.jpg
 
 
 
-
-
+CTFD: Tunnels Prep
+  localhost = loopback and 127.0.0.1
+  ssh cctc@10.50.1.150 -p 1111 ### 1111 is the alt ssh port on .150
+  ssh cctc@localhost -p 1111  ### local listening port on OPS
+  ssh to PC1 to OPs, use 10.50.1.150
+  dynamic tunnel to PC1 from OPs  ### ssh cctc@localhost -D 9050
+  local tunnel to PC1 ### ssh -L 1111:localhost:22 cctc@10.50.1.150 -NT
+  local tunnel to PC1 http ### ss cctc@1.50.1.150 -L 1111:localhost:80
+  dynamic tunnel using local tunnel (1111) ### ssh -D 9050 cctc@localhost -p 1111 -NT
+  wget -r http://localhost:1111 ### gets web page from local tunnel on 80
+  proxychains wget -r http://100.1.1.2  ### using dynamic tunnel gets web page
+  ssh cctc@10.50.1.150 -L 1111:100.1.1.2:22 -NT   ### local tunnel to PC2 SSH port from PC1
+  ssh -L 2222:100.1.1.2:22 cctc@localhost -p 1111 -NT    ### 2nd local tunnel tp Pc2 SSH port
+  ssh cctc@localhost -p 1111 -L 2222:100.1.1.2:80 -NT   ###2nd local tunnel to 
+  
+  
+  
+  
+  
 
 
 
