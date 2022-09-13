@@ -604,7 +604,7 @@ nc -lp 4444 > 3steg.jpg
 Class ex:
   ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT
   ssh localhost -p 1111
-ssh localhost -p 1111 -D 9050 (dynamic)
+  ssh localhost -p 1111 -D 9050 (dynamic)
 
  *****SSH dynamic port forwarding:
     syntax:
@@ -631,6 +631,29 @@ ssh localhost -p 1111 -D 9050 (dynamic)
       proxychains ./scan.sh
       proxychains ssh student@172.16.101.2
     
+    SSH Remote port forwarding
+      syntax:
+        ssh -p <optional alt port> <user>@<remote ip> -R <remote bind port>:<tgt ip>:<tgt port> -NT     -OR-
+        ssh -R <remote bind port>:<tgt ip>:<tgt port> -p <alt port> <user>@<remote ip> -NT
+        -R, whoever i am SSH to gets the bind port
+        ex:
+          Blue Host-1
+          ssh student@10.10.0.40 -R 1111:localhost:80 -NT  
+            creates a remote port on remote localhost that fwds to tgt spec
+        Remote and Local port fwd:
+          Blue Private Host-1:
+            ssh student@172.16.82.106 -R 1111:localhost:22 -NT
+          Internet Host:
+            ssh student@172.16.82.106 -L 2222:localhost:1111 -NT
+          Internet Host:
+            ssh localhost -p 2222
+      Creates a remote port on a remote machine, staging a connection.
+      Also creates a local port on the localhost to connect to the previously staged connection.
+      Login to extra1 via the net1 local port forward
+  
+  
+  
+  
   
 *****Class ex:
   ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (blue host/ blue priv)
