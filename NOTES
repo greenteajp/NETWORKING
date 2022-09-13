@@ -653,6 +653,7 @@ nc -lp 4444 > 3steg.jpg
   
   
 *****Class ex:
+ ****FORWARD:
   ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (blue host/ blue priv)
   ssh localhost -p 1111 (regular ssh connection)
   #ssh localhost -p 1111 -D 9050 (dynamic) to get scripts/etc on box
@@ -660,13 +661,12 @@ nc -lp 4444 > 3steg.jpg
         proxychains wget -r localhost   (http stuff)
         proxychains nc localhost 9001   (netcat to banner grab)
 
-
-*****Remote:
-ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (tunnel)
-ssh localhost -p 1111 (connect to blue priv from internet host)             ^
-ssh 192.168.1.1 -R 6789:localhost:22 -NT (open 22 on blue host 1 from blue priv)
-ssh 172.16.82.106 -L 9999:localhost:6789 -NT   (connect to from internet host)
-ssh localhost -p 9999   (final connection from interhet host)
+ *****Remote:
+  ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (tunnel)
+  ssh localhost -p 1111 (connect to blue priv from internet host)             ^
+  ssh 192.168.1.1 -R 6789:localhost:22 -NT (open 22 on blue host 1 from blue priv)
+  ssh 172.16.82.106 -L 9999:localhost:6789 -NT   (connect to from internet host)
+  ssh localhost -p 9999   (final connection from interhet host)
 
 
 
