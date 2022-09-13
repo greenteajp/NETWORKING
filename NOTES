@@ -620,6 +620,7 @@ ssh localhost -p 1111 -D 9050 (dynamic)
       proxychains ./scan.sh
       proxychains ssh student@10.10.0.40
       
+      
      SSH Dynamic Port Forwarding 2-Step
       Blue Private Host-1:
       ssh student@172.16.82.106 -L 1111:10.10.0.40:22 -NT
@@ -632,11 +633,13 @@ ssh localhost -p 1111 -D 9050 (dynamic)
     
   
 *****Class ex:
-  ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT
+  ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT   (blue host/ blue priv)
   ssh localhost -p 1111 (regular ssh connection)
   #ssh localhost -p 1111 -D 9050 (dynamic) to get scripts/etc on box
-
-
+        proxychains 
+                  nmap -Pn 127.0.0.1 (cant ping across proxy) (priv host)
+        proxychains wget -r localhost   (http stuff)
+        proxychains nc localhost 9001   (netcat to banner grab)
 
 
 
