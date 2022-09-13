@@ -601,8 +601,10 @@ nc -lp 4444 > 3steg.jpg
           ssh student@localhost -p 1111 -L 2222:172.16.82.106:80 -NT    ### localhost is internet host; student here auth to .10
           firefox localhost:2222
           
-
-
+Class ex:
+  ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT
+  ssh localhost -p 1111
+ssh localhost -p 1111 -D 9050 (dynamic)
 
  *****SSH dynamic port forwarding:
     syntax:
@@ -629,5 +631,19 @@ nc -lp 4444 > 3steg.jpg
       proxychains ssh student@172.16.101.2
     
   
+*****Class ex:
+  ssh student@172.16.82.106 -L 1111:192.168.1.10:22 -NT
+  ssh localhost -p 1111 (regular ssh connection)
+  #ssh localhost -p 1111 -D 9050 (dynamic) to get scripts/etc on box
+
+
+
+
+
+
+
+
+
+
 
 
