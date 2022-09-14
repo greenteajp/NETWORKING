@@ -225,7 +225,15 @@ done
 # ( | grep succeeded) for Ubuntu to display only the open connections
 
 
-
+function enum () {
+hostname
+ip a
+ss -ntlp
+ip neigh
+ls /usr/cctc/share
+which tcpdump wireshark nmap
+}
+enum 
 
 
 
