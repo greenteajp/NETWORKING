@@ -668,4 +668,14 @@ nc -lp 4444 > 3steg.jpg
   ssh 172.16.82.106 -L 9999:localhost:6789 -NT   (connect to from internet host)
   ssh localhost -p 9999   (final connection from interhet host)
             ssh localhost -p 2222
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Recon Methodology:
+  
+
+
+
+
+
+
+
 
