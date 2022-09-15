@@ -696,6 +696,135 @@ arp -a, ip neigh | egrep -iv "failed" (neighbors?)
 ss  -ntlp (other listening ports/ filtered?)
 ls /usr/cctc/share (Files of interest)
 which tcpdump wireshark wget curl (Available Tools)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NETWORK ANALYSIS:
+  FingerPrinting & Host Ident:
+    variances in RFC for differ OS's and systems enables the capability for fp
+    tools used for fp and host identif can be used psavviely(sniffing/fp) or actively(accning)
+  P0F(passive OS fingerp):
+    looks at variations in inital TTL, frag flag, default IP header packet length, window size, TCP options
+      config in : /etc/p0f/p0f.fp       sudo p0f -i eth0
+  Network Traffic Sniffing:
+    Libpcap
+    WinPcap (outdated)
+    NPCAP
+    ***TCPDUMP/WIRESHARK            sudo tcpdump -r <pcap> "tcp[13] = 0x12" -n | awk '{print $3}' | sort -n | uniq
+   
+   Baselines/Obj:                                                                                | cut -d. -f5 | sort uniq 
+      verify port/proto
+      normal vs peak net traffic
+      7 day time frame
+      current state/ultil of net
+      stats:
+        proto hier
+        conv
+        endpoint
+        I/O graph
+        ipv4
+        ipv6
+        stat
+        expert inform
+        
+   Net Data Types:
+    full packet capture data
+    session data
+      sflow
+      netflow
+    stat data
+    packet string data
+    alert data
+    log data
+    data collect devices:
+      sensors
+        in-line   ; controls traffic
+        passive  ; just observing
+      methods
+        TAP     ; in-line/passive
+        SPAN    ; copy traff from vlan
+        ARP Spoofing (MitM)   ; redir traffic to other, copy then fwd
+        
+    Anomaly Det:
+      Indicator of attack (IOA)
+        proactive
+        a series of actions that are sus together
+        focus on intent
+        look for what must happen
+          code execution. persis, lat move, etc.
+      Indicator of Compromise (IOC)
+        reactive
+        forensic evidence
+        provides info that cna change
+          malware, IP addr, exploits, signatures
+      Indicators:
+        .exe/executables
+        NOP sled
+        Repeated letters
+        well-known sign
+        mismatched proto
+        unusual traffic
+        large amount of traffic/unusual times
+        
+      Potential indicators of attack:
+          dest
+          ports
+          public servers/DMZs
+          off-hours
+          net scans
+          alarm events
+          malware reinfec
+          remote logins
+          unusual traffic outb
+          anomalous user login or acct use
+          size of respon for HTML
+          high # of req for the same files
+          using non-stnd port/applic-port mismatch
+          writing changes to the registry/system files
+          DNS req
+          
+      MALWARE:
+        Adware/spyware
+          large amts of traffic/unusual traff
+          IOA
+            dest
+          IOC
+            unusual traff outb
+          Virus
+            phishing/ watering hole
+            IOA
+              alarm events, email proto
+            IOC
+              changes to the regis/ sys file
+          Worm
+            same as Virus
+          Trojans
+            beaconing
+            IOA
+              dest
+            IOC
+              unsual traff outbound, unusual tasks, changes to registry/sys files
+          Rootkit - kernel level/ registry levels
+          Backdoor - remote logins
+          Botnets - controls PCs, remote logins
+          Polymorphic and Metamorphic Malware - (poly)changing code ; (meta) change depends on circumstance (ie what OS, vm, )
+          Ransomware - PC locks for ransom
+          Mobile Code - on sub stick
+          Info-Stealing Worms -  
+          BIOS/firmware Malware - 
+          
+        USE display filters, follow streams, BPFs, color coding
+        hex outputs
+        Decoding
+          enca, chardet, iconv
+          
+          
+
+
+
+
+
+
+
+
 
 
 
