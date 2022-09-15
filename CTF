@@ -117,4 +117,19 @@ Credentials: Same as Task 3.
 net1_student4:password4
 
 
+10)
+ssh student@10.50.21.119 -R 10400:localhost:22 -NT  (ssh-01)
+ssh net1_student4@localhost -p 10400 -L 10445:192.168.0.40:5555 -NT (internet host)
+ssh net1_student4@localhost -p 10445 -L 10435:172.16.0.60:23 -NT  (internet host)
+telnet localhost 10435 (internet host)
+ssh net1_student4@localhost -p 10445 -L 10442:localhost:10425 -NT (internet host)
+ssh net1_student4@localhost -p 10442 -D 9050 -NT (ih)
+
+
+
+
+
+
+
+
 
