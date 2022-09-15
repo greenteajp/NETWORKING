@@ -670,7 +670,33 @@ nc -lp 4444 > 3steg.jpg
             ssh localhost -p 2222
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Recon Methodology:
-  
+  Recon Meth:
+1. Host Discov (nmap, nc, ./scan.sh, ping sweep)
+nmap -Pn -T4 <ip>,1,30,55,70/cidr -p 21-23,80 | egrep -i "scan report|open"
+nc <ip> 21-23 80
+Ping Sweep:
+for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
+replace first three octets
+2. Port Discov (nmap, nc, ./scan.sh)  
+3. Port Validate (Banner Grab, nc)
+4. Follow-on Actions based on ports found
+  4a. if 22 or 23, connect to it and do PASSIVE RECON
+  4b. if 21 or 80, (80)wget -r <ip> ;; (21)wget -r ftp://<ip> (PULL THE FILES)
+
+Scanning Meth:
+1. Quick Scan ports: 21-23, 80
+2. Scan specific ports based on hints/clues
+3. 1-10000
+4. All ports (65535)
+
+Passive Recon Meth:
+hostname
+ip addr, ifconfig (interf and subnets)
+arp -a, ip neigh | egrep -iv "failed" (neighbors?)
+ss  -ntlp (other listening ports/ filtered?)
+ls /usr/cctc/share (Files of interest)
+which tcpdump wireshark wget curl (Available Tools)
+
 
 
 
