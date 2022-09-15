@@ -81,10 +81,32 @@ CTFD: Tunnels Prep
   ssh cctc@localhost -p 1111 -L 2222:100.1.1.2:80 -NT   ###2nd local tunnel to 
   
   
-  
-  
-  
+CTFD: Task 3 Tunnels Training
+  DTC: Task 3-4 Start Flags
+    Task 3 - Donovian Tunnels Training: dig_dug_dig_dug
+        Your Network Number is N (Given by Instructor)
+        Credentials: net{N}_studentX:passwordX
+        X is your student number
+        T3 (Atropia) Float IP address is - 10.50.33.143
+        T4 (Pineland) Float IP address is - 10.50.22.245 (Note - You can only telnet here to act as an insider, this will not be a routed path)
+T3
+Hostname: Atropia
+IP: 10.50.XXX.XXX (Will be Provided by Mission Command)
+creds: netY_studentX:passwordX (netY = Networking Class Identifier & studentX = Student Number & passwordX = Student Number)
+Known Ports: 22(ssh)
+Action: Establish appropriate tunneling techniques
 
+T4
+Hostname: Pineland
+IP: 10.50.XXX.XXX (Will be Provided by Mission Command)
+creds: netY_studentX:passwordX (netY = Networking Class Identifier & studentX = Student Number & passwordX = Student Number)
+Known Ports: 23(telnet - go directly from T1 to T4 to simulate compromising the machine)
+Type: Compromised Donovian System
+Action: Establish appropriate tunneling techniques
+  
+  
+  
+net1_student4:password4
 
 
 
