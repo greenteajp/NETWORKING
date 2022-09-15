@@ -514,7 +514,7 @@ DATA TRANSFER, MOVEMENT, AND REDIRECTION:
         auth w/ user/pass and/or PKI
         interactive terminal access
         
-      ***SCP:
+      ***cd ../..:
         TCP transp (22)
         uses auth thru sign in/SSH key
         non interactive
