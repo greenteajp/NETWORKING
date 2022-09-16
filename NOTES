@@ -826,11 +826,14 @@ Network Traffic Filtering:
       signature
       heuristic aka behavioral
       
+      ******************
     SNORT REQ .conf FILE.  
     (sudo) snort -D -l /var/log/snort -c /etc/snort/snort.conf
           ^daemon   ^ creates log file    ^points to .conf file, must need it
-      makes two file when hits alerts, etc,the snort.log.### is the timestamp (its a pcap)
+      makes two file when hits alerts, etc,the snort.log.### is the epoch timestamp (its a pcap), open with wireshark or tcpdump -XXvvr <pcap>
       'action' file shows logs hit on given firewalls
+      
+    (sudo) snort -r   <snort.log.pcap> -c /etc/snort/snort.conf      ### gives live info, doesnt run as a daemon
       
       
       ****
@@ -930,3 +933,31 @@ Rule Header
     Incorrect telnet login attempt
      alert tcp any 23 -> any any (msg:"TELNET login incorrect"; content:"Login incorrect";
     flow:established,from_server; classtype:bad-unknown; sid:2323; rev:6; )
+
+
+    Failed IDS/IPS
+      fail open/close
+        fail open can restart the computer by sending malicious packet
+      insersion attack
+        IDS accepts attack
+        host will not accept it
+      evasion attacking
+        IDS does not accept packet
+        host will accept it
+      
+      strengthening def sys
+        linking IDS/IPS to other tools
+        multiconfig
+        tuning ( get rid of false positives)
+        HIDS and File Integrity
+        
+        
+        
+        
+        
+
+
+
+
+
+
