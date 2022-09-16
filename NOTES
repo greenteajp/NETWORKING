@@ -826,6 +826,13 @@ Network Traffic Filtering:
       signature
       heuristic aka behavioral
       
+    SNORT REQ .conf FILE.  
+    (sudo) snort -D -l /var/log/snort -c /etc/snort/snort.conf
+          ^daemon   ^ creates log file    ^points to .conf file, must need it
+      makes two file when hits alerts, etc,the snort.log.### is the timestamp (its a pcap)
+      'action' file shows logs hit on given firewalls
+      
+      
       ****
     Snort IDS/IPS rule - header
 [action] [protocol] [s.ip] [s.port] [direction] [d.ip] [d.port] ( match conditions ;)
@@ -860,7 +867,20 @@ Snort IDS/IPS Non-Payload detection options:
     ttl - The ttl keyword is used to check the IP time-to-live value.
     tos - The tos keyword is used to check the IP TOS field for a specific value.
     ipopts - The ipopts keyword is used to check if a specific IP option is present
-    seq - check for a specific TCP sequence number
+    seq - check for a specific TCP sequence numberRule Header
+
+    ICMP ping sweep
+
+    alert icmp any any -> 10.1.0.2 any (msg: "NMAP ping sweep Scan"; dsize:0; sid:10000004; rev: 1; )
+
+    Look for a specific set of Hex bits (NoOP sled)
+
+    alert tcp any any -> any any (msg:"NoOp sled"; content: "|9090 9090 9090|"; sid:9090; rev: 1; )
+
+    Incorrect telnet login attempt
+
+    alert tcp any 23 -> any any (msg:"TELNET login incorrect"; content:"Login incorrect";
+    flow:established,from_server; classtype:bad-unknown; sid:2323; rev:6; )
     ack - check for a specific TCP acknowledge number.
     flags - The flags keyword is used to check if specific TCP flag bits are present.
     itype - The itype keyword is used to check for a specific ICMP type value.
