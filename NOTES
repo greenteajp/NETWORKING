@@ -835,7 +835,7 @@ Network Traffic Filtering:
       
     (sudo) snort -r   <snort.log.pcap> -c /etc/snort/snort.conf      ### gives live info, doesnt run as a daemon
       
-      
+      sudo snort -D -i eth0 -l /var/log/snort/ -c /etc/snort/snort.conf
       ****
     Snort IDS/IPS rule - header
 [action] [protocol] [s.ip] [s.port] [direction] [d.ip] [d.port] ( match conditions ;)
