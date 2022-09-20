@@ -111,10 +111,8 @@ Credentials: Same as Task 3.
   Tools/Techniques: Netcat (nc), Secure Shell (ssh), /dev/tcp, and any others you may require
   
   
-  
-  
-  
-net1_student4:password4
+   
+password: net1_student4:password4
 
 
 10)
