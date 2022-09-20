@@ -1116,7 +1116,7 @@ Rules:
 
 
   *****CLASS DEMOS*****:
-  IPTABLES
+  ***IPTABLES
   -I insert to top
   -A append to bottom
     look atdefault filter iptables: sudo iptables -L
@@ -1158,7 +1158,9 @@ Save rules to file:
   sudo iptables-restore < file
 
 
-  NFTABLES:
+
+
+  ***NFTABLES:
      sudo nft add table ip CCTC   ###create ipv4 table
      sudo nft list tables        ###show tables
      sudo nft flush table ip CCTC
