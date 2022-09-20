@@ -1116,7 +1116,9 @@ Rules:
 
 
   *****CLASS DEMOS*****:
-    look at iptables: sudo iptables -L
+  -I insert to top
+  -A append to bottom
+    look atdefault filter iptables: sudo iptables -L
     look at NAT tables: sudo iptables -t nat
     erase default iptables : sudo iptables -F
                ^^  NAT:   sudo iptables -t nat
@@ -1127,6 +1129,24 @@ Rules:
     allows multible ports and matches for states of connections: 
         sudo iptables -A INPUT -p tcp -m multiport --ports 22,23,6010,6011,6012 -m state --state NEW,ESTABLISHED -j ACCEPT
                          OUTPUT
+
+    sudo iptables -L --line     ---shows line numbers, usefull for appending and deleting
+    sudo iptables -D OUTPUT #   ---deletes via chain and line number
+    
+    sudo iptables -P FORWARD DROP   ---changes policy of forward to DROP
+    
+
+    drop traffic comming from ip: sudo iptables -I INPUT -s 172.16.82.106 -j DROP
+    drop traffic going to ip: sudo iptables -I OUTPUT -d 172.16.82.106 -j DROP
+
+
+sudo iptables -A INPUT -s 172.16.82.112 -j ACCEPT
+sudo iptables -A OUTPUT -d 172.16.82.112 -j ACCEPT
+
+
+sudo iptables -L -v       ### -v is connection tracking
+
+
 
 
 
