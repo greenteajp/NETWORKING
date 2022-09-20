@@ -1159,7 +1159,59 @@ Save rules to file:
 
 
   NFTABLES:
-      
+     sudo nft add table ip CCTC   ###create ipv4 table
+     sudo nft list tables        ###show tables
+     sudo nft flush table ip CCTC
+              delete
+     
+     sudo nft add chain ip CCTC input { type filter hook input priority 0 \; policy accept \; }     ### makes chain to new table
+                                ^name 
+                                output                   output
+                                
+    sudo nft list ruleset        ###list all rules made
+    sudo nft insert rule ip CCTC input tcp dport 22 accept      ###make
+                                 output    /sport
+
+
+    sudo nft list chain ip CCTC output -ann     ###shows a specific chain in a specific table, shows handle for easy deletion
+                  ruleset -ann
+
+
+    sudo nft add rule ip CCTC input tcp sport {22, 6010, 6011, 6012} accept
+                              output    dport
+
+    
+    block ips:
+sudo nft add rule ip CCTC input ip saddr 172.16.82.122 drop
+sudo nft add rule ip CCTC output ip daddr 172.16.82.122 drop
+sudo nft add rule ip CCTC input ip saddr 10.10.0.40 accept
+sudo nft add rule ip CCTC output ip daddr 10.10.0.40 accept
+
+sudo nft add rule ip CCTC input position 6 ip saddr 172.16.82.112 drop      ### adds rule below handle 6
+sudo nft insert rule ip CCTC output ip daddr 172.16.82.112 drop       ### to the top of list
+
+sudo nft delete rule ip CCTC output handle 22     ###delete via handle
+                             input/etc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
