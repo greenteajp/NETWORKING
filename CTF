@@ -127,7 +127,13 @@ ssh net1_student4@localhost -p 10442 -D 9050 -NT (ih)
 
 
 
+FILTERING TASK 2: 
 
+T2
+sudo nft add rule ip CCTC input tcp sport {22,23,3389,6010,6011,6012} ct state {new, established} accept
+sudo nft add rule ip CCTC input ip saddr 10.10.0.40 icmp type {echo-request} accept 
+sudo nft add rule ip CCTC input ip saddr 10.10.0.40 icmp type {echo-reply} accept
+sudo nft add rule ip CCTC output ip daddr 10.10.0.40 icmp type {echo-request} accept
 
 
 
