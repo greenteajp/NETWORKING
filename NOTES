@@ -1116,6 +1116,7 @@ Rules:
 
 
   *****CLASS DEMOS*****:
+  IPTABLES
   -I insert to top
   -A append to bottom
     look atdefault filter iptables: sudo iptables -L
@@ -1133,23 +1134,32 @@ Rules:
     sudo iptables -L --line     ---shows line numbers, usefull for appending and deleting
     sudo iptables -D OUTPUT #   ---deletes via chain and line number
     
-    sudo iptables -P FORWARD DROP   ---changes policy of forward to DROP
+    sudo iptables -P FORWARD DROP   ---changes policy of forward to DROP,etc.
     
 
     drop traffic comming from ip: sudo iptables -I INPUT -s 172.16.82.106 -j DROP
     drop traffic going to ip: sudo iptables -I OUTPUT -d 172.16.82.106 -j DROP
 
 
-sudo iptables -A INPUT -s 172.16.82.112 -j ACCEPT
-sudo iptables -A OUTPUT -d 172.16.82.112 -j ACCEPT
+  sudo iptables -A INPUT -s 172.16.82.112 -j ACCEPT
+  sudo iptables -A OUTPUT -d 172.16.82.112 -j ACCEPT
+
+  sudo iptables -L -v       ### -v is connection tracking
+
+  for CHAIN in INPUT OUTPUT FORWARD;do sudo iptables -P $CHAIN ACCEPT;done    ###changes all chains to accept
+
+extra:
+  sudo iptables -A INPUT -m state --state INVALID -j DROP   ###Drops invalid fragments (not belonging to any connections)
+  sudo iptables -A INPUT -f -j DROP     ### drops all fragments
+  sudo iptables -A INPUT -i eth0 -p tcp --syn -m limit --limit 10/second -j ACCEPT     ###Throttle SYN requests
+  
+Save rules to file:
+  sudo iptables-save > file
+  sudo iptables-restore < file
 
 
-sudo iptables -L -v       ### -v is connection tracking
-
-
-
-
-
+  NFTABLES:
+      
 
 
 
