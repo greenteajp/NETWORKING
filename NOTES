@@ -1003,7 +1003,7 @@ NETWORK TRAFFIC FILTERING:
               NF_IP_LOCAL_OUT → OUTPUT
               NF_IP_POST_ROUTING → POSTROUTING
       
-      Config Iptables:
+      **************888Config Iptables:
         ***iptables - IPV4 packet admin
         ip6tables - IPV6 packet admin
         ebtables - Ethernet Brdige frame table admin
@@ -1014,7 +1014,7 @@ NETWORK TRAFFIC FILTERING:
        nat - used to translate private <> public addr and ports
         prerouting, postrout, output
      
-*************IPTABLES SYNTAX!!!     
+***IPTABLES SYNTAX!!!     
 sudo iptables -t [table] -A [chain] [rules] -j [action]
 Rules:
 -i or -o [iface]
@@ -1038,7 +1038,7 @@ Rules:
   Deletes rule at number: iptables -t [table] -D [chain] [rule num]     
         
         
-      CONFIG NFTABLES!:  
+      *******************CONFIG NFTABLES!:  
        Families:
         ip - IPv4 packets
         ip6 - IPv6 packets
@@ -1065,8 +1065,8 @@ Rules:
         nat: ip, ip6
 
 
-      Create table:
-        nft add table [family] [table]
+      ***Create table:
+        sudo nft add table [family] [table]
         [family] = ip, ip6, inet, arp, bridge and netdev.
         [table] = user provided name for the table 
         
@@ -1113,6 +1113,21 @@ Rules:
           nft replace rule [family] [table] [chain] [handle <handle>] [matches (matches)] [statement]
         Deletes rule at handle
           nft delete rule [family] [table] [chain] [handle <handle>]
+
+
+  *****CLASS DEMOS*****:
+    look at iptables: sudo iptables -L
+    look at NAT tables: sudo iptables -t nat
+    erase default iptables : sudo iptables -F
+               ^^  NAT:   sudo iptables -t nat
+               
+    sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+    
+
+
+
+
+
 
 
 
