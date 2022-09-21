@@ -22,7 +22,7 @@ Networking 1 - Task 2: ICMPv6 MitM , IPv6
     a.dst="ff02::1" ### all nodes or ::1
   b=ICMPv6ND_RA()
   c=ICMPv6NDOptSrcLLAddr()
-    c.lladdr="own mac"
+    c.lladdr="own mac"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   d=ICMPv6NDOptMTU()
   e=ICMPv6NDOptPrefixInfo()
     e.prefix="fd00:deaf:cafe::"
@@ -138,8 +138,9 @@ sudo nft add rule ip CCTC output ip daddr 10.10.0.40 icmp type {echo-request} ac
 
 
 CAPSTONE--------------------------------------------------------------------------------------------------------------------------------------------------------------
+  cap-02 pcpa q 2: tcpdump 'ip[6] & 32 = 32 || ip[6:2] & 8191 > 0' -r capstone-bpf.pcap  | wc -l
   
-
+tcpdump 'src host 10.0.0.104 && (tcp[13] =4 || tcp[13] =18)' -r capstone-bpf.pcap | wc -l
 
 
 
