@@ -143,10 +143,18 @@ CAPSTONE------------------------------------------------------------------------
 tcpdump 'src host 10.0.0.104 && (tcp[13] =4 || tcp[13] =18)' -r capstone-bpf.pcap | wc -l
 
 
+07, scan his subnet
+ssh net1_student4@10.50.20.228 -p 7777 -L 10402:10.2.2.7:23 -NT
+ssh net1_student4@10.2.2.6 -p 7777 -R 10403:localhost:2222 -NT
+ssh net1_student4@10.50.20.228 -p 7777 -L 10406:localhost:10403 -NT
+ssh net1_student4@localhost -p 10406 -D 9050 -NT
 
-
-
-
+ssh on 08 box, 
+ssh net1_student4@10.50.20.228 -p 7777 -L 10402:10.2.2.7:23 -NT
+ssh net1_student4@localhost -p 2222 -R 10403:10.10.10.140:301 -NT
+ssh net1_student4@10.2.2.6 -p 777R -L 10407:localhost:10403 -NT
+ssh net1_student4@10.50.20.228 -p 7777 -L 10408:localhost:10407 -NT
+ssh net1_student4@localhost -p 10408 -D 9050 -NT
 
 
 
