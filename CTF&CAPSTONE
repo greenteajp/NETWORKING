@@ -166,8 +166,8 @@ ssh net1_student4@localhost -p 10410 -D 9050 -NT
 proxychains ssh net1_student4@10.10.10.182 -p 504
 
 
-
-
+sudo iptables -t nat -A PREROUTING -i eth0 -j DNAT --to 192.168.1.10
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE 
 
 
 
