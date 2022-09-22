@@ -157,12 +157,13 @@ ssh net1_student4@10.50.20.228 -p 7777 -L 10408:localhost:10407 -NT
 ssh net1_student4@localhost -p 10408 -D 9050 -NT
 
 
-
-
-
-
-
-
+ssh to other in subnet^
+ssh net1_student4@10.50.20.228 -p 7777 -L 10402:10.2.2.7:23 -NT
+ssh net1_student4@localhost -p 2222 -R 10403:10.10.10.182:504 -NT
+ssh net1_student4@10.2.2.6 -p 7777 -R 10407:localhost:10403 -NT
+ssh net1_student4@10.50.20.228 -p 7777 -L 10410:localhost:10407 -NT
+ssh net1_student4@localhost -p 10410 -D 9050 -NT
+proxychains ssh net1_student4@10.10.10.182 -p 504
 
 
 
